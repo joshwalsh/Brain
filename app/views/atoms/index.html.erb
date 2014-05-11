@@ -1,1 +1,23 @@
 <h1>Atoms</h1>
+
+<%= form_for Atom.new do |f| %>
+<div class="row collapse">
+  <div class="small-10 columns">
+    <%= f.text_field :title, placeholder: "Add another atom" %> 
+  </div>
+  <div class="small-2 columns">
+    <button class="button postfix">Add</button>
+  </div>
+</div>
+<% end %>
+
+
+<% unless @atoms.blank? %>
+  <ul>
+  <% @atoms.each do |atom| %>
+    <li><%= atom.title %> <%= link_to "delete", atom, method: :delete %></li>
+  <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any atoms</p>
+<% end %>
