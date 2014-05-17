@@ -18,7 +18,7 @@ class AtomsController < ApplicationController
   def destroy
     atom = Atom.find(params[:id])
     atom.destroy
-    redirect_to atoms_path
+    redirect_to setup_path
   end
 
   protected
