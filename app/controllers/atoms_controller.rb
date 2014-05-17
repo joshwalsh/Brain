@@ -1,21 +1,17 @@
 class AtomsController < ApplicationController
+  before_filter :check_if_exists, only: [:create]
+
   def show
     @atom = Atom.find(params[:id])
   end
 
   def create
-    atom = check_for_duplicate(atom_params[:title])
+    atom = Atom.new(atom_params)
 
-    if atom.nil?
-      atom = Atom.new(atom_params)
-
-      if atom.save
-        redirect_to atom
-      else
-        redirect_to :back, notice: "Atom could not be saved"
-      end
-    else 
+    if atom.save
       redirect_to atom
+    else
+      redirect_to :back, notice: "Atom could not be saved"
     end
   end
 
@@ -27,8 +23,11 @@ class AtomsController < ApplicationController
 
   protected
 
-  def check_for_duplicate(title)
-    return Atom.where(title: title.downcase).first
+  def check_if_exists
+    title = atom_params[:title].downcase
+    atom = Atom.where(title: title).first
+    
+    redirect_to atom unless atom.nil?
   end
 
   def atom_params
