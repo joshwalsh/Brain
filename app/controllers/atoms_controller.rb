@@ -1,13 +1,13 @@
 class AtomsController < ApplicationController
-  def index
-    @atoms = Atom.all
+  def show
+    @atom = Atom.find(params[:id])
   end
 
   def create
     atom = Atom.new(atom_params)
 
     if atom.save
-      redirect_to atoms_path
+      redirect_to atom
     end
   end
 
