@@ -1,0 +1,6 @@
+<p><strong><%= @atom.slug %></strong> doesn't exist.  Would you like to create it?</p>
+
+<%= form_for @atom do |f| %>
+  <%= f.hidden_field :slug %> 
+  <button class="button">Create</button>
+<% end %>

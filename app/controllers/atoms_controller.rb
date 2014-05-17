@@ -2,7 +2,13 @@ class AtomsController < ApplicationController
   before_filter :check_if_exists, only: [:create]
 
   def show
-    @atom = Atom.find(params[:id])
+    @atom = Atom.for_slug(params[:id])
+
+    if @atom.nil?
+      @atom = Atom.new
+      @atom.slug = params[:id]
+      render 'create_prompt'
+    end
   end
 
   def create
@@ -24,15 +30,15 @@ class AtomsController < ApplicationController
   protected
 
   def check_if_exists
-    title = atom_params[:title].downcase
-    atom = Atom.where(title: title).first
+    atom = Atom.for_title(params[:title])
     
     redirect_to atom unless atom.nil?
   end
 
   def atom_params
     params.require(:atom).permit(
-      :title
+      :title,
+      :slug
     )
   end
 end
