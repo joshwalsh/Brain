@@ -12,3 +12,9 @@
 
  *= require_tree .
  */
+
+.shelf {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
