@@ -1,6 +1,12 @@
 class Atom < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
 
+  has_many :parent_connections, class_name: 'Connection', foreign_key: 'parent_atom_id', :dependent => :destroy
+  has_many :child_connections, class_name: 'Connection', foreign_key: 'child_atom_id', :dependent => :destroy
+
+  has_many :children, through: :parent_connections
+  has_many :parents, through: :child_connections
+
   before_save :format_for_save
 
   def self.for_title(title)

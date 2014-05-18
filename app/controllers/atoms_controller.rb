@@ -22,7 +22,7 @@ class AtomsController < ApplicationController
   end
 
   def destroy
-    atom = Atom.find(params[:id])
+    atom = Atom.for_slug(params[:id])
     atom.destroy
     redirect_to setup_path
   end

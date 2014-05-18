@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140510233348) do
+ActiveRecord::Schema.define(version: 20140518023036) do
 
   create_table "atoms", force: true do |t|
     t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "connections", force: true do |t|
+    t.integer  "parent_atom_id"
+    t.integer  "child_atom_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
