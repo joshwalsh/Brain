@@ -1,5 +1,9 @@
 <h1><%= @atom.title %></h1>
-<%= link_to "delete", @atom, method: :delete %>
+
+<%= form_for @atom do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit "Rename" %>
+<% end %>
 
 <h2>Parent Connections</h2>
 <ul>
@@ -30,3 +34,5 @@
     <%= f.submit "Add" %>
   <% end %>
 </ul>
+
+<%= link_to "delete", @atom, method: :delete %>

@@ -21,6 +21,13 @@ class AtomsController < ApplicationController
     end
   end
 
+  def update
+    @atom = Atom.for_slug(params[:id])
+    @atom.update_attributes(atom_params)
+
+    redirect_to @atom
+  end
+
   def destroy
     atom = Atom.for_slug(params[:id])
     atom.destroy
@@ -31,7 +38,7 @@ class AtomsController < ApplicationController
 
   def check_if_exists
     atom = Atom.for_title(params[:title])
-    
+
     redirect_to atom unless atom.nil?
   end
 
@@ -42,4 +49,3 @@ class AtomsController < ApplicationController
     )
   end
 end
-
