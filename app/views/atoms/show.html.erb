@@ -6,11 +6,27 @@
   <% @atom.parents.each do |parent| %>
     <li><%= link_to parent.title, parent %></li>
   <% end %>
+  <li>
+    <%= form_for Connection.new do |f| %>
+      <%= f.hidden_field :child_atom_id, value: @atom.id %>
+      <%= f.fields_for Atom.new do |a| %>
+        <%= a.text_field :title %>
+      <% end %>
+      <%= f.submit "Add" %>
+    <% end %>
+  </li>
 </ul>
 
 <h2>Child Connections</h2>
 <ul>
   <% @atom.children.each do |child| %>
     <li><%= link_to child.title, child %></li>
+  <% end %>
+  <%= form_for Connection.new do |f| %>
+    <%= f.hidden_field :parent_atom_id, value: @atom.id %>
+    <%= f.fields_for Atom.new do |a| %>
+      <%= a.text_field :title %>
+    <% end %>
+    <%= f.submit "Add" %>
   <% end %>
 </ul>
