@@ -19,11 +19,21 @@ class Atom < ActiveRecord::Base
   end
 
   def slug
-    self.title.downcase.gsub(" ", "-")  
+    self.title.downcase.gsub(" ", "-")
   end
 
   def slug=(slug)
     self.title = slug.gsub("-", " ").downcase
+  end
+
+  def siblings
+    siblings = []
+
+    parents.each do |parent|
+      siblings = siblings + parent.children
+    end
+
+    siblings - [self]
   end
 
   def to_param

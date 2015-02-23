@@ -35,4 +35,11 @@
   <% end %>
 </ul>
 
+<h2>Sibling Connections</h2>
+<ul>
+  <% @atom.siblings.each do |sibling| %>
+    <li><%= link_to sibling.title, sibling %></li>
+  <% end %>
+</ul>
+
 <%= link_to "delete", @atom, method: :delete %>
