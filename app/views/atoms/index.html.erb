@@ -1,0 +1,7 @@
+<h1>All Atoms</h1>
+
+<ol>
+  <% @atoms.each do |atom| %>
+    <li><%= link_to atom.title, atom %></li>
+  <% end %>
+</ol>

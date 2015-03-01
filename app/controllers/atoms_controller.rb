@@ -1,6 +1,10 @@
 class AtomsController < ApplicationController
   before_filter :check_if_exists, only: [:create]
 
+  def index
+    @atoms = Atom.all.order(:title)
+  end
+
   def show
     @atom = Atom.for_slug(params[:id])
 
