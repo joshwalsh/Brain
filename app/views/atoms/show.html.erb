@@ -7,14 +7,14 @@
 
 <h2>Parent Connections</h2>
 <ul>
-  <% @atom.parents.each do |parent| %>
-    <li><%= link_to parent.title, parent %></li>
+  <% @atom.child_connections.each do |connection| %>
+    <li><%= link_to connection.parent.title, connection.parent %> <%= button_to "X", connection, :method=>:delete %></li>
   <% end %>
   <li>
     <%= form_for Connection.new do |f| %>
       <%= f.hidden_field :child_atom_id, value: @atom.id %>
       <%= f.fields_for Atom.new do |a| %>
-        <%= a.text_field :title %>
+        <%= a.text_field :title, { autocomplete: 'off' } %>
       <% end %>
       <%= f.submit "Add" %>
     <% end %>
@@ -23,13 +23,13 @@
 
 <h2>Child Connections</h2>
 <ul>
-  <% @atom.children.each do |child| %>
-    <li><%= link_to child.title, child %></li>
+  <% @atom.parent_connections.each do |connection| %>
+    <li><%= link_to connection.child.title, connection.child %> <%= button_to "X", connection, :method=>:delete %></li>
   <% end %>
   <%= form_for Connection.new do |f| %>
     <%= f.hidden_field :parent_atom_id, value: @atom.id %>
     <%= f.fields_for Atom.new do |a| %>
-      <%= a.text_field :title %>
+      <%= a.text_field :title, { autocomplete: 'off' } %>
     <% end %>
     <%= f.submit "Add" %>
   <% end %>

@@ -18,6 +18,14 @@ class ConnectionsController < ApplicationController
     end
   end
 
+  def destroy
+    connection = Connection.find(params[:id])
+    parent = connection.parent
+
+    connection.destroy
+    redirect_to parent
+  end
+
   def connection_params
     params.require(:connection).permit(
       :parent_atom_id,
