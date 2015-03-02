@@ -1,3 +1,9 @@
 <h1><%= @connection.parent.title %> &rarr; <%= @connection.child.title %></h1>
 
+<h4>Versions</h4>
+
+<%= render 'shared/versions', versions: @connection.versions %>
+
+<hr>
+
 <%= link_to 'Disconnect',  @connection,  method: :delete %>

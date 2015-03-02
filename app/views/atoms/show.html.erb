@@ -10,7 +10,7 @@
   <% @atom.child_connections.each do |connection| %>
     <li>
       <%= link_to connection.parent.title, connection.parent %>
-      <%= link_to 'V',  connection %> 
+      <%= link_to 'V',  connection %>
       <%= link_to 'X',  connection,  method: :delete %>
     </li>
   <% end %>
@@ -49,5 +49,11 @@
     <li><%= link_to sibling.title, sibling %></li>
   <% end %>
 </ul>
+
+<h4>Versions</h4>
+
+<%= render 'shared/versions', versions: @atom.versions %>
+
+<hr>
 
 <%= link_to "Delete #{@atom.title}", @atom, method: :delete %>

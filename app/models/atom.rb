@@ -9,6 +9,8 @@ class Atom < ActiveRecord::Base
 
   before_save :format_for_save
 
+  has_paper_trail
+
   def self.for_title(title)
     atom = where(title: title).first
   end
