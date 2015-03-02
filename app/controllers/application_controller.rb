@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     atom = Atom.first
 
     if atom
-      redirect_to atom
+      redirect_to atoms_url
     else
       redirect_to setup_path
     end
