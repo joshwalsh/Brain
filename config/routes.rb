@@ -1,4 +1,5 @@
 Brain::Application.routes.draw do
+  devise_for :users
   resources :atoms
   resources :connections
 
