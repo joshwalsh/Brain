@@ -1,4 +1,7 @@
 class ConnectionsController < ApplicationController
+  def show
+    @connection = Connection.find(params[:id])
+  end
 
   def create
     parent = Atom.find(connection_params[:parent_atom_id]) if connection_params[:parent_atom_id]

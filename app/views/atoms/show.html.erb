@@ -8,7 +8,11 @@
 <h2>Parent Connections</h2>
 <ul>
   <% @atom.child_connections.each do |connection| %>
-    <li><%= link_to connection.parent.title, connection.parent %> <%= button_to "X", connection, :method=>:delete %></li>
+    <li>
+      <%= link_to connection.parent.title, connection.parent %>
+      <%= link_to 'V',  connection %> 
+      <%= link_to 'X',  connection,  method: :delete %>
+    </li>
   <% end %>
   <li>
     <%= form_for Connection.new do |f| %>
@@ -24,7 +28,11 @@
 <h2>Child Connections</h2>
 <ul>
   <% @atom.parent_connections.each do |connection| %>
-    <li><%= link_to connection.child.title, connection.child %> <%= button_to "X", connection, :method=>:delete %></li>
+    <li>
+      <%= link_to connection.child.title, connection.child %>
+      <%= link_to 'V',  connection %>
+      <%= link_to 'X',  connection,  method: :delete %>
+    </li>
   <% end %>
   <%= form_for Connection.new do |f| %>
     <%= f.hidden_field :parent_atom_id, value: @atom.id %>
@@ -42,4 +50,4 @@
   <% end %>
 </ul>
 
-<%= link_to "delete", @atom, method: :delete %>
+<%= link_to "Delete #{@atom.title}", @atom, method: :delete %>
