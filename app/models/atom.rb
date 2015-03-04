@@ -29,7 +29,8 @@ class Atom < ActiveRecord::Base
     parents.each do |parent|
       siblings = siblings + parent.children
     end
-
+    
+    siblings = siblings.uniq
     siblings - [self]
   end
 
