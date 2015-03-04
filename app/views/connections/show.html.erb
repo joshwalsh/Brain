@@ -1,4 +1,9 @@
-<h1><%= @connection.parent.title %> &rarr; <%= @connection.child.title %></h1>
+<h1><%= @connection.title %></h1>
+
+<ul>
+  <li><strong>Parent:</strong> <%= link_to @connection.parent.title, @connection.parent %></li>
+  <li><strong>Child:</strong> <%= link_to @connection.child.title, @connection.child %></li>
+</ul>
 
 <h4>Versions</h4>
 

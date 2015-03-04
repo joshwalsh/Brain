@@ -29,7 +29,7 @@ class Atom < ActiveRecord::Base
     parents.each do |parent|
       siblings = siblings + parent.children
     end
-    
+
     siblings = siblings.uniq
     siblings - [self]
   end
@@ -41,6 +41,6 @@ class Atom < ActiveRecord::Base
   protected
 
   def slugify(title)
-    title.downcase.gsub("-", " ")
+    title.parameterize
   end
 end

@@ -2,7 +2,7 @@ class AtomsController < ApplicationController
   before_filter :check_if_exists, only: [:create]
 
   def index
-    @atoms = Atom.all.order(:title)
+    @atoms = Atom.all.order(:title).decorate
   end
 
   def show
@@ -13,6 +13,8 @@ class AtomsController < ApplicationController
       @atom.title = params[:id]
       render 'create_prompt'
     end
+
+    @atom = @atom.decorate
   end
 
   def create

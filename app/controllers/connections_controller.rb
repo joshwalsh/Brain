@@ -1,6 +1,6 @@
 class ConnectionsController < ApplicationController
   def show
-    @connection = Connection.find(params[:id])
+    @connection = Connection.find(params[:id]).decorate
   end
 
   def create
