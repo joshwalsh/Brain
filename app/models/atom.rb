@@ -1,5 +1,6 @@
 class Atom < ActiveRecord::Base
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true
+  validates :slug, presence: true, uniqueness: true
 
   has_many :parent_connections, class_name: 'Connection', foreign_key: 'parent_atom_id', :dependent => :destroy
   has_many :child_connections, class_name: 'Connection', foreign_key: 'child_atom_id', :dependent => :destroy
@@ -7,25 +8,19 @@ class Atom < ActiveRecord::Base
   has_many :children, through: :parent_connections
   has_many :parents, through: :child_connections
 
-  before_save :format_for_save
-
   has_paper_trail
+
+  def self.for_slug(slug)
+    atom = where(slug: slug).first
+  end
 
   def self.for_title(title)
     atom = where(title: title).first
   end
 
-  def self.for_slug(slug_title)
-    title = slug_title.gsub("-", " ").downcase
-    atom = where(title: title).first
-  end
-
-  def slug
-    self.title.downcase.gsub(" ", "-")
-  end
-
-  def slug=(slug)
-    self.title = slug.gsub("-", " ").downcase
+  def title=(title)
+    write_attribute(:title, title)
+    write_attribute(:slug, slugify(title))
   end
 
   def siblings
@@ -44,7 +39,7 @@ class Atom < ActiveRecord::Base
 
   protected
 
-  def format_for_save
-    self.title.downcase!
+  def slugify(title)
+    title.downcase.gsub("-", " ")
   end
 end

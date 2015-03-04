@@ -10,7 +10,7 @@ class AtomsController < ApplicationController
 
     if @atom.nil?
       @atom = Atom.new
-      @atom.slug = params[:id]
+      @atom.title = params[:id]
       render 'create_prompt'
     end
   end
