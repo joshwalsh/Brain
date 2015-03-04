@@ -1,0 +1,10 @@
+@import "bourbon";
+
+@import "base/settings";
+@import "base/base";
+
+.shelf {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
