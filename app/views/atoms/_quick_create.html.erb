@@ -1,0 +1,4 @@
+<%= form_for Atom.new do |f| %>
+  <%= f.text_field :title, { autocomplete: 'off', placeholder: "New Atom" } %>
+  <button class="button">Add</button>
+<% end %>
