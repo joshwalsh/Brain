@@ -1,3 +1,14 @@
+<div class="mast">
+  <h1 class="mast__title"><%= link_to @atom.title, @atom %></h1>
+  <div class="mast__divider">
+    <p>Influences <strong><%= @atom.influence %>%</strong> of brain.</p>
+
+    <ul class="mast__actions list-horizontal">
+      <li><%= link_to '', @atom, method: :delete, class: 'icon icon--light icon__trash', confirm: "Are you sure you wish to delete?" %></li>
+    </ul>
+  </div>
+</div>
+
 <%= form_for @atom do |f| %>
   <%= f.text_field :title %>
   <%= f.submit "Rename" %>

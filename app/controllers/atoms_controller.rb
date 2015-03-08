@@ -17,6 +17,11 @@ class AtomsController < ApplicationController
     @atom = @atom.decorate
   end
 
+  def edit
+    @atom = Atom.for_slug(params[:id])
+    @atom = @atom.decorate
+  end
+
   def create
     atom = Atom.new(atom_params)
 
