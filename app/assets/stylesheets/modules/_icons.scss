@@ -1,0 +1,18 @@
+.icon {
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &.icon--light {
+    &.icon__edit {
+      background-image: url(/assets/icons/edit-w.png);
+    }
+
+    &.icon__trash {
+      background-image: url(/assets/icons/trash-w.png);
+    }
+  }
+}

@@ -2,9 +2,6 @@
 
 @import "base/settings";
 @import "base/base";
-
-.shelf {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-}
+@import "modules/mast";
+@import "modules/lists";
+@import "modules/icons";

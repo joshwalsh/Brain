@@ -1,10 +1,14 @@
-<h1><%= @atom.title %></h1>
-<p>Influences <%= @atom.influence %>% of brain.</p>
+<div class="mast">
+  <h1 class="mast__title"><%= @atom.title %></h1>
+  <div class="mast__divider">
+    <p>Influences <strong><%= @atom.influence %>%</strong> of brain.</p>
 
-<%= form_for @atom do |f| %>
-  <%= f.text_field :title %>
-  <%= f.submit "Rename" %>
-<% end %>
+    <ul class="mast__actions list-horizontal">
+      <li><%= link_to '', edit_atom_path(@atom), class: 'icon icon--light icon__edit' %></li>
+      <li><%= link_to '', @atom, method: :delete, class: 'icon icon--light icon__trash', confirm: "Are you sure you wish to delete?" %></li>
+    </ul>
+  </div>
+</div>
 
 <h2>Parent Connections</h2>
 <ul>
@@ -56,5 +60,3 @@
 <%= render 'shared/versions', versions: @atom.versions %>
 
 <hr>
-
-<%= link_to "Delete #{@atom.title}", @atom, method: :delete %>
