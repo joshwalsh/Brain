@@ -24,10 +24,10 @@ class Atom < ActiveRecord::Base
   end
 
   def influence
-    total = Atom.all.count
-    family = siblings.count + parents.count + children.count
+    total = Atom.all.count.to_f
+    family = family_size.to_f
 
-    (1 - (family.to_f / total.to_f)) * 100
+    (1 - (family / total)) * 100
   end
 
   def siblings
@@ -39,6 +39,10 @@ class Atom < ActiveRecord::Base
 
     siblings = siblings.uniq
     siblings - [self]
+  end
+
+  def family_size
+    siblings.count + parents.count + children.count
   end
 
   def to_param
