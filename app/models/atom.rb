@@ -23,6 +23,13 @@ class Atom < ActiveRecord::Base
     write_attribute(:slug, slugify(title))
   end
 
+  def influence
+    total = Atom.all.count
+    family = siblings.count + parents.count + children.count
+
+    (1 - (family.to_f / total.to_f)) * 100
+  end
+
   def siblings
     siblings = []
 

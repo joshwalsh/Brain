@@ -11,4 +11,7 @@ class AtomDecorator < Draper::Decorator
     object.title.titleize
   end
 
+  def influence
+    object.influence.round(1)
+  end
 end
