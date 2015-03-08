@@ -3,6 +3,7 @@ class AtomDecorator < Draper::Decorator
 
   decorates_association :parents
   decorates_association :children
+  decorates_association :siblings
 
   decorates_association :parent_connections
   decorates_association :child_connections
