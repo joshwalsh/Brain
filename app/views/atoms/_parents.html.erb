@@ -1,0 +1,15 @@
+<ul class="list-vertical">
+  <% atom.child_connections.each do |connection| %>
+    <%= render partial: "connections/connection_parent", locals: {connection: connection} %>
+  <% end %>
+
+  <li>
+    <%= form_for Connection.new do |f| %>
+      <%= f.hidden_field :child_atom_id, value: atom.id %>
+      <%= f.fields_for Atom.new do |a| %>
+        <%= a.text_field :title, { autocomplete: 'off' } %>
+      <% end %>
+      <%= f.submit "Add" %>
+    <% end %>
+  </li>
+</ul>

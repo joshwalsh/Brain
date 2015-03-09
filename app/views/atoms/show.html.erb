@@ -14,24 +14,7 @@
   <div class="col-4">
     <div class="l-section">
       <h2 class="list-header">Parents:</h2>
-      <ul class="list-vertical">
-        <% @atom.child_connections.each do |connection| %>
-          <li>
-            <%= link_to connection.parent.title, connection.parent %>
-            <%= link_to 'V',  connection %>
-            <%= link_to 'X',  connection,  method: :delete %>
-          </li>
-        <% end %>
-        <li>
-          <%= form_for Connection.new do |f| %>
-            <%= f.hidden_field :child_atom_id, value: @atom.id %>
-            <%= f.fields_for Atom.new do |a| %>
-              <%= a.text_field :title, { autocomplete: 'off' } %>
-            <% end %>
-            <%= f.submit "Add" %>
-          <% end %>
-        </li>
-      </ul>
+      <%= render partial: "parents", locals: {atom: @atom} %>
     </div>
   </div>
 
@@ -40,7 +23,7 @@
       <h2 class="list-header">Siblings:</h2>
       <ul class="list-vertical">
         <% @atom.siblings.each do |sibling| %>
-          <li><%= link_to sibling.title, sibling %></li>
+          <%= render partial: "atom", object: sibling %>
         <% end %>
       </ul>
     </div>
@@ -49,22 +32,7 @@
   <div class="col-4">
     <div class="l-section">
       <h2 class="list-header">Children:</h2>
-      <ul class="list-vertical">
-        <% @atom.parent_connections.each do |connection| %>
-          <li>
-            <%= link_to connection.child.title, connection.child %>
-            <%= link_to 'V',  connection %>
-            <%= link_to 'X',  connection,  method: :delete %>
-          </li>
-        <% end %>
-        <%= form_for Connection.new do |f| %>
-          <%= f.hidden_field :parent_atom_id, value: @atom.id %>
-          <%= f.fields_for Atom.new do |a| %>
-            <%= a.text_field :title, { autocomplete: 'off' } %>
-          <% end %>
-          <%= f.submit "Add" %>
-        <% end %>
-      </ul>
+      <%= render partial: "children", locals: {atom: @atom} %>
     </div>
   </div>
 </div>
