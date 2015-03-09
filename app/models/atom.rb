@@ -23,11 +23,16 @@ class Atom < ActiveRecord::Base
     write_attribute(:slug, slugify(title))
   end
 
+  def slug=(slug)
+    write_attribute(:title, deslugify(slug))
+    write_attribute(:slug, slug)
+  end
+
   def influence
     total = Atom.all.count.to_f
     family = family_size.to_f
 
-    (1 - (family / total)) * 100
+    (family / total) * 100
   end
 
   def siblings
@@ -58,5 +63,9 @@ class Atom < ActiveRecord::Base
 
   def slugify(title)
     title.parameterize
+  end
+
+  def deslugify(slug)
+    slug.humanize
   end
 end
