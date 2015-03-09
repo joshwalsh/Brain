@@ -35,6 +35,11 @@ class Atom < ActiveRecord::Base
 
     parents.each do |parent|
       siblings = siblings + parent.children
+      siblings = siblings - [parent]
+    end
+
+    children.each do |child|
+      siblings = siblings - [child]
     end
 
     siblings = siblings.uniq
