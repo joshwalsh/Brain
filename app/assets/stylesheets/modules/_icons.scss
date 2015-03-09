@@ -10,25 +10,25 @@
 
   &.icon--dark {
     &.icon__connection {
-      background-image: url(/assets/icons/connection-b.png);
+      background-image: image-url("icons/connection-b.png");
     }
 
     &.icon__add {
-      background-image: url(/assets/icons/add-b.png);
+      background-image: image-url("icons/add-b.png");
     }
 
     &.icon__detach {
-      background-image: url(/assets/icons/detach-b.png);
+      background-image: image-url("icons/detach-b.png");
     }
   }
 
   &.icon--light {
     &.icon__edit {
-      background-image: url(/assets/icons/edit-w.png);
+      background-image: image-url("icons/edit-w.png");
     }
 
     &.icon__trash {
-      background-image: url(/assets/icons/trash-w.png);
+      background-image: image-url("icons/trash-w.png");
     }
   }
 }
