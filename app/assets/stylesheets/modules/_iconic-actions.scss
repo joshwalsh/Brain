@@ -1,0 +1,13 @@
+.iconic-actions {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  position: absolute;
+  right: 0;
+  top: 8px;
+
+  > li {
+    padding-right: em(5);
+    display: inline-block;
+  }
+}

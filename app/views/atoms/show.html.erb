@@ -3,7 +3,7 @@
   <div class="mast__divider">
     <p>Influences <strong><%= @atom.influence %>%</strong> of brain.</p>
 
-    <ul class="mast__actions list-horizontal">
+    <ul class="mast__actions">
       <li><%= link_to '', edit_atom_path(@atom), class: 'icon icon--light icon__edit' %></li>
       <li><%= link_to '', @atom, method: :delete, class: 'icon icon--light icon__trash', confirm: "Are you sure you wish to delete?" %></li>
     </ul>
@@ -21,7 +21,7 @@
   <div class="col-4">
     <div class="l-section">
       <h2 class="list-header">Siblings:</h2>
-      <ul class="list-vertical">
+      <ul class="connections-list">
         <% @atom.siblings.each do |sibling| %>
           <%= render partial: "atom", object: sibling %>
         <% end %>

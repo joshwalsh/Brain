@@ -1,5 +1,1 @@
-<li>
-  <%= link_to connection.parent.title, connection.parent %>
-  <%= link_to 'V',  connection %>
-  <%= link_to 'X',  connection,  method: :delete %>
-</li>
+<%= render partial: 'connections/connection', locals: {atom: connection.parent, connection: connection} %>

@@ -1,4 +1,4 @@
-<ul class="list-vertical">
+<ul class="connections-list">
   <% atom.child_connections.each do |connection| %>
     <%= render partial: "connections/connection_parent", locals: {connection: connection} %>
   <% end %>

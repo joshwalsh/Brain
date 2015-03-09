@@ -21,9 +21,17 @@
     }
 
     .mast__actions {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
       position: absolute;
       right: 0;
       top: 8px;
+
+      > li {
+        display: inline-block;
+        padding-right: em(20);
+      }
     }
   }
 }
