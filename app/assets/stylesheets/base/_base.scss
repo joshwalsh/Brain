@@ -16,3 +16,16 @@ h1 {
 a {
   color: #121212;
 }
+
+#{$all-text-inputs},
+textarea {
+  border: 1px solid #ccc;
+  padding: 6px;
+  border-radius: 3px;
+  font-size: em(16);
+  font-family: $body-font;
+
+  &:focus {
+    outline: none;
+  }
+}

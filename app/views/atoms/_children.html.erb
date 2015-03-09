@@ -7,9 +7,8 @@
     <%= form_for Connection.new do |f| %>
       <%= f.hidden_field :parent_atom_id, value: atom.id %>
       <%= f.fields_for Atom.new do |a| %>
-        <%= a.text_field :title, { autocomplete: 'off' } %>
+        <%= a.text_field :title, { autocomplete: 'off', class: 'input-list-add' } %>
       <% end %>
-      <%= f.submit "Add" %>
     <% end %>
   </li>
 </ul>
