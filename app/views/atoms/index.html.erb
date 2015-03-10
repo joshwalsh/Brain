@@ -1,5 +1,8 @@
-<ol>
+<ol class="link-list">
   <% @atoms.each do |atom| %>
-    <li><%= link_to atom.title, atom %></li>
+    <li class="inline-progress">
+      <span class="inline-progress__indicator" style="width:<%= atom.influence %>%"></span>
+      <%= link_to atom.title, atom %>
+      </li>
   <% end %>
 </ol>

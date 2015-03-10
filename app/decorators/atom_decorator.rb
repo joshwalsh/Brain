@@ -19,23 +19,9 @@ class AtomDecorator < Draper::Decorator
     ((family / total) * 100).round(1)
   end
 
-  def siblings
-    siblings = []
-
-    parents.each do |parent|
-      siblings = siblings + parent.children
-      siblings = siblings - [parent]
-    end
-
-    children.each do |child|
-      siblings = siblings - [child]
-    end
-
-    siblings = siblings.uniq
-    siblings - [self]
-  end
-
   def family_size
-    siblings.count + parents.count + children.count
+    family = siblings + parents + children
+    family = family.uniq
+    family.count
   end
 end

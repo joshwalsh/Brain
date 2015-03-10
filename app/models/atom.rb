@@ -28,6 +28,23 @@ class Atom < ActiveRecord::Base
     write_attribute(:slug, slug)
   end
 
+  def siblings
+    siblings = []
+
+    parents.each do |parent|
+      siblings = siblings + parent.children
+    end
+
+    siblings = siblings.uniq
+
+    children.each do |child|
+      siblings = siblings - [child]
+    end
+
+    siblings = siblings - parents
+    siblings - [self]
+  end
+  
   def to_param
     slug
   end
