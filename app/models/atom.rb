@@ -28,33 +28,6 @@ class Atom < ActiveRecord::Base
     write_attribute(:slug, slug)
   end
 
-  def influence
-    total = Atom.all.count.to_f
-    family = family_size.to_f
-
-    (family / total) * 100
-  end
-
-  def siblings
-    siblings = []
-
-    parents.each do |parent|
-      siblings = siblings + parent.children
-      siblings = siblings - [parent]
-    end
-
-    children.each do |child|
-      siblings = siblings - [child]
-    end
-
-    siblings = siblings.uniq
-    siblings - [self]
-  end
-
-  def family_size
-    siblings.count + parents.count + children.count
-  end
-
   def to_param
     slug
   end
