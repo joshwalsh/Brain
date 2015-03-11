@@ -24,4 +24,14 @@ class AtomDecorator < Draper::Decorator
     family = family.uniq
     family.count
   end
+
+  def description
+    return '' if object.description.nil?
+    object.description
+  end
+
+  def markdown_description
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    markdown.render(description).html_safe
+  end
 end

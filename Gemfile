@@ -13,6 +13,7 @@ gem 'devise'
 gem 'paper_trail', '~> 4.0.0.beta'
 gem 'bourbon'
 gem 'draper', '~> 1.3'
+gem 'redcarpet'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

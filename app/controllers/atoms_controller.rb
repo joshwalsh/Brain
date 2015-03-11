@@ -56,7 +56,8 @@ class AtomsController < ApplicationController
   def atom_params
     params.require(:atom).permit(
       :title,
-      :slug
+      :slug,
+      :description
     )
   end
 end

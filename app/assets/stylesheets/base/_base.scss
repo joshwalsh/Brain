@@ -17,6 +17,11 @@ a {
   color: #121212;
 }
 
+label {
+  display: block;
+  padding-bottom: 4px;
+}
+
 #{$all-text-inputs},
 textarea {
   border: 1px solid #ccc;
@@ -24,6 +29,8 @@ textarea {
   border-radius: 3px;
   font-size: em(16);
   font-family: $body-font;
+  margin-bottom: 1em;
+  width: 100%;
 
   &:focus {
     outline: none;
