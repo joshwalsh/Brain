@@ -13,7 +13,6 @@ gem 'devise'
 gem 'paper_trail', '~> 4.0.0.beta'
 gem 'bourbon'
 gem 'draper', '~> 1.3'
-gem 'redcarpet'
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 
 group :doc do

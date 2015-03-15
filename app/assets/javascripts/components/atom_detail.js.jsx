@@ -4,7 +4,7 @@ var AtomDetail = React.createClass({
       title: 'loading...',
       influence: '',
       slug: '',
-      markdownDescription: '',
+      description: '',
       parents: [],
       children: [],
       siblings: []
@@ -43,7 +43,7 @@ var AtomDetail = React.createClass({
           </div>
         </div>
 
-        <HTMLDescription html={this.state.markdownDescription} />
+        <MarkdownDescription html={this.state.description} />
 
         <div className="row">
           <div className="col-4">
