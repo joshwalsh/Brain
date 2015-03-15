@@ -3,6 +3,13 @@ class AtomsController < ApplicationController
 
   def index
     @atoms = Atom.all.order(:title).decorate
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => @atoms.to_json
+      }
+    end
   end
 
   def show

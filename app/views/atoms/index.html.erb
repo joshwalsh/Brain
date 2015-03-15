@@ -1,7 +1,1 @@
-<ol class="link-list">
-  <% @atoms.each do |atom| %>
-    <li>
-      <%= link_to atom.title, atom %>
-    </li>
-  <% end %>
-</ol>
+<%= react_component('AtomList') %>
