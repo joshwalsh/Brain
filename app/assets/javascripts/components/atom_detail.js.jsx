@@ -1,6 +1,7 @@
 var AtomDetail = React.createClass({
   getInitialState: function() {
     return {
+      id: '',
       title: 'loading...',
       influence: '',
       slug: '',
@@ -11,6 +12,9 @@ var AtomDetail = React.createClass({
     };
   },
   componentDidMount: function() {
+    this.fetchAtom();
+  },
+  fetchAtom: function() {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -21,6 +25,34 @@ var AtomDetail = React.createClass({
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+  },
+  saveConnection: function(atom, connection) {
+    connection.atom = atom;
+
+    $.ajax({
+      url: '/connections.json',
+      dataType: 'json',
+      type: 'POST',
+      data: {connection: connection},
+      success: function(data) {
+        this.fetchAtom();
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error('/atoms.json', status, err.toString());
+      }.bind(this)
+    });
+  },
+  handleNewParent: function(data) {
+    var atom = { title: data.title };
+    var connection = { child_atom_id: this.state.id };
+
+    this.saveConnection(atom, connection);
+  },
+  handleNewChild: function(data) {
+    var atom = { title: data.title };
+    var connection = { parent_atom_id: this.state.id };
+
+    this.saveConnection(atom, connection);
   },
   render: function() {
     var siblings = this.state.siblings.map(function (atom) {
@@ -53,6 +85,7 @@ var AtomDetail = React.createClass({
             <div className="l-section">
               <h2 className="list-header">Parents:</h2>
               <ConnectionList connections={this.state.parents} type="parents" />
+              <ConnectionForm onAddConnection={this.handleNewParent} />
             </div>
           </div>
           <div className="col-4">
@@ -67,6 +100,7 @@ var AtomDetail = React.createClass({
             <div className="l-section">
               <h2 className="list-header">Children:</h2>
               <ConnectionList connections={this.state.children} type="children" />
+              <ConnectionForm onAddConnection={this.handleNewChild} />
             </div>
           </div>
         </div>

@@ -139,7 +139,6 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     react-source (0.13.0)
-    redcarpet (3.2.2)
     request_store (1.1.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
@@ -206,7 +205,6 @@ DEPENDENCIES
   rails
   rails_12factor
   react-rails (~> 1.0.0.pre)!
-  redcarpet
   rspec-rails
   sass-rails (~> 4.0.0.rc2)
   sdoc

@@ -1,3 +1,4 @@
+json.id @atom.id
 json.title @atom.title
 json.influence @atom.influence.to_s
 json.slug @atom.slug

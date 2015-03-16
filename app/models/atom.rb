@@ -15,7 +15,8 @@ class Atom < ActiveRecord::Base
   end
 
   def self.for_title(title)
-    atom = where(title: title).first
+    slug = Atom.slugify(title)
+    Atom.for_slug(slug)
   end
 
   def title=(title)
@@ -44,18 +45,26 @@ class Atom < ActiveRecord::Base
     siblings = siblings - parents
     siblings - [self]
   end
-  
+
   def to_param
     slug
   end
 
   protected
 
-  def slugify(title)
+  def self.slugify(title)
     title.parameterize
   end
 
-  def deslugify(slug)
+  def slugify(title)
+    Atom.slugify(title)
+  end
+
+  def self.deslugify(slug)
     slug.humanize
+  end
+
+  def deslugify(slug)
+    Atom.deslugify(slug)
   end
 end
