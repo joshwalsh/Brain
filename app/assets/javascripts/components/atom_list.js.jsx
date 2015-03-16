@@ -29,7 +29,7 @@ var AtomList = React.createClass({
         this.fetchAtoms();
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
+        console.error('/atoms.json', status, err.toString());
       }.bind(this)
     });
   },

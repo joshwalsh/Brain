@@ -31,6 +31,9 @@ var AtomDetail = React.createClass({
 
     return (
       <div>
+      <ul className="top-bar">
+        <li><a href="/atoms" className="button button--minimal">View All</a></li>
+      </ul>
         <div className="mast">
           <h1 className="mast__title">{ this.state.title }</h1>
           <div className="mast__divider">

@@ -1,7 +1,7 @@
 var AtomQuickAdd = React.createClass({
   handleAddAtom: function (e) {
     e.preventDefault();
-    var title = React.findDOMNode(this.refs.newItem).value.trim();
+    var title = React.findDOMNode(this.refs.title).value.trim();
 
     if (!title) {
       return;
@@ -13,7 +13,7 @@ var AtomQuickAdd = React.createClass({
   render: function() {
     return (
       <form onSubmit={this.handleAddAtom}>
-        <input type="text" ref="newItem" placeholder="New Item" className="input-minimal" autocomplete="off" />
+        <input type="text" ref="title" placeholder="New Item" className="input-minimal" />
       </form>
     )
   }
