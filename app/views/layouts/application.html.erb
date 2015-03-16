@@ -3,17 +3,6 @@
   <%= render 'layouts/dochead' %>
 
   <body>
-    <ul class="top-bar">
-      <li class="top-bar__action"><%= render "atoms/quick_create" %></li>
-      <li><%= link_to 'View All', atoms_path, class: 'button button--minimal' %></li>
-    </ul>
-
-    <% flash.each do |name, msg| %>
-      <% if msg.present? %>
-        <%= content_tag :div, msg, id: "flash_#{name}", class: "notification notification--#{name}" %>
-      <% end %>
-    <% end %>
-
     <%= yield %>
 
     <%= javascript_include_tag "application" %>

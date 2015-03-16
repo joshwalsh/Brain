@@ -2,7 +2,7 @@ class AtomsController < ApplicationController
   before_filter :check_if_exists, only: [:create]
 
   def index
-    @atoms = Atom.all.order(:title).decorate
+    @atoms = Atom.all.order(:slug).decorate
   end
 
   def show

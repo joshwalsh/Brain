@@ -5,6 +5,9 @@ var AtomList = React.createClass({
     };
   },
   componentDidMount: function() {
+    this.fetchAtoms();
+  },
+  fetchAtoms: function() {
     $.ajax({
       url: '/atoms.json',
       dataType: 'json',
@@ -16,6 +19,20 @@ var AtomList = React.createClass({
       }.bind(this)
     });
   },
+  handleNewAtom: function(atom) {
+    $.ajax({
+      url: '/atoms.json',
+      dataType: 'json',
+      type: 'POST',
+      data: {atom: atom},
+      success: function(data) {
+        this.fetchAtoms();
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
   render: function() {
     var atoms = this.state.atoms.map(function (atom) {
       return (
@@ -23,9 +40,17 @@ var AtomList = React.createClass({
       );
     });
     return (
-      <ol className="link-list">
-        {atoms}
-      </ol>
+      <div>
+        <ul className="top-bar">
+          <li className="top-bar__action">
+            <AtomQuickAdd onAtomSubmit={this.handleNewAtom} />
+          </li>
+        </ul>
+
+        <ol className="link-list">
+          {atoms}
+        </ol>
+      </div>
     );
   }
 });
