@@ -15,9 +15,4 @@ class ConnectionDecorator < Draper::Decorator
     return '' if object.description.nil?
     object.description
   end
-
-  def markdown_description
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
-    markdown.render(description).html_safe
-  end
 end
