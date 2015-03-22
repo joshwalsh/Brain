@@ -1,4 +1,7 @@
 var AtomQuickAdd = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
   handleSubmit: function (e) {
     e.preventDefault();
     var title = React.findDOMNode(this.refs.title).value.trim();
@@ -6,9 +9,23 @@ var AtomQuickAdd = React.createClass({
     if (!title) {
       return;
     }
-    this.props.onAtomSubmit({title: title});
+    this.save({title: title});
     React.findDOMNode(this.refs.title).value = '';
     return;
+  },
+  save: function(atom) {
+    $.ajax({
+      url: '/atoms.json',
+      dataType: 'json',
+      type: 'POST',
+      data: {atom: atom},
+      success: function(data) {
+        this.context.router.transitionTo('atom', {atomSlug: data.slug});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error('/atoms.json', status, err.toString());
+      }.bind(this)
+    });
   },
   render: function() {
     return (

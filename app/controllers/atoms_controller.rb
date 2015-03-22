@@ -48,9 +48,11 @@ class AtomsController < ApplicationController
   protected
 
   def check_if_exists
-    atom = Atom.for_title(params[:title])
+    atom = Atom.for_title(atom_params[:title])
 
-    redirect_to atom unless atom.nil?
+    if (atom)
+      render atom
+    end
   end
 
   def atom_params
