@@ -8,6 +8,7 @@ var RouteHandler = Router.RouteHandler;
 var routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="atom" path="atoms/:atomSlug" handler={AtomDetail}/>
+    <Route name="connection" path="connections/:connectionID" handler={ConnectionDetail}/>
     <DefaultRoute handler={AtomList}/>
   </Route>
 );

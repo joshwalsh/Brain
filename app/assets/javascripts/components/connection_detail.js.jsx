@@ -1,25 +1,37 @@
 var ConnectionDetail = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
   getInitialState: function() {
     return {
       title: 'Loading...',
       id: '',
-      parent: { },
-      child: { },
+      parent: {
+        slug: ''
+      },
+      child: {
+        slug: ''
+      },
       description: ''
     }
   },
   componentDidMount: function() {
     this.fetchComponent();
   },
+  componentWillReceiveProps: function() {
+    this.fetchComponent();
+  },
   fetchComponent: function() {
+    var url = '/connections/' + this.context.router.getCurrentParams().connectionID + '.json'
+
     $.ajax({
-      url: this.props.url,
+      url: url,
       dataType: 'json',
       success: function(data) {
         this.setState(data);
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
+        console.error(url, status, err.toString());
       }.bind(this)
     });
   },
@@ -31,15 +43,14 @@ var ConnectionDetail = React.createClass({
           <div className="mast__divider">
             <p>&nbsp;</p>
             <ul className="mast__actions">
-              <li><a href={'/connections/' + this.state.id + '/edit'} className='icon icon--light icon__edit'></a></li>
-              <li><a href={'/connections/' + this.state.id } className='icon icon--light icon__trash'></a></li>
+
             </ul>
           </div>
         </div>
 
         <ul>
-          <li><a href={'/atoms/' + this.state.parent.slug }>{ this.state.parent.title }</a></li>
-          <li><a href={'/atoms/' + this.state.child.slug }>{ this.state.child.title }</a></li>
+          <li><Link to="atom" params={{atomSlug: this.state.parent.slug}}>{ this.state.parent.title }</Link></li>
+          <li><Link to="atom" params={{atomSlug: this.state.child.slug}}>{ this.state.child.title }</Link></li>
         </ul>
 
         <MarkdownDescription html={this.state.description} />

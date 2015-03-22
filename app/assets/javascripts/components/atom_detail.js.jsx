@@ -80,7 +80,7 @@ var AtomDetail = React.createClass({
             <p>Influences <strong>{ this.state.influence }%</strong> of brain.</p>
 
             <ul className="mast__actions">
-              <li><Link to="atom" params={{atomSlug: this.state.slug}} className="icon icon--light icon__edit"></Link></li>
+              
             </ul>
           </div>
         </div>
