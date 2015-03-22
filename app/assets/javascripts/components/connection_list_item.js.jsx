@@ -11,7 +11,7 @@ var ConnectionListAtom = React.createClass({
       <li>
         <Link to="atom" params={{atomSlug: atom.slug}}>{atom.title}</Link>
         <ul className="iconic-actions">
-          <li><a href={"/connections/" + this.props.connection.id} className='icon icon--dark icon__connection'></a></li>
+          <li><Link to="connection" params={{connectionId: this.props.connection.id}} className='icon icon--dark icon__connection'></Link></li>
           <li><a href={"/connections/" + this.props.connection.id} className='icon icon--dark icon__detach'></a></li>
         </ul>
       </li>
