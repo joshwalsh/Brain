@@ -35,10 +35,9 @@ class ConnectionsController < ApplicationController
 
   def destroy
     connection = Connection.find(params[:id])
-    parent = connection.parent
-
     connection.destroy
-    redirect_to parent
+
+    render json: {}, status: :no_content
   end
 
   def connection_params

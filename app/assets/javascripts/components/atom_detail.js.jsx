@@ -88,7 +88,7 @@ var AtomDetail = React.createClass({
           <div className="col-4">
             <div className="l-section">
               <h2 className="list-header">Parents:</h2>
-              <ConnectionList connections={this.state.parents} type="parents" />
+              <ConnectionList connections={this.state.parents} onConnectionsUpdate={this.fetchAtom} type="parents" />
               <ConnectionForm onAddConnection={this.handleNewParent} />
             </div>
           </div>
@@ -103,7 +103,7 @@ var AtomDetail = React.createClass({
           <div className="col-4">
             <div className="l-section">
               <h2 className="list-header">Children:</h2>
-              <ConnectionList connections={this.state.children} type="children" />
+              <ConnectionList connections={this.state.children} onConnectionsUpdate={this.fetchAtom} type="children" />
               <ConnectionForm onAddConnection={this.handleNewChild} />
             </div>
           </div>
