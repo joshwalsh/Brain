@@ -5,12 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def boot
-    atom = Atom.first
-
-    if atom
-      redirect_to atoms_url
-    else
-      redirect_to setup_path
-    end
+    
   end
 end

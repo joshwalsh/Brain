@@ -1,4 +1,7 @@
 var AtomDetail = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
   getInitialState: function() {
     return {
       id: '',
@@ -15,14 +18,16 @@ var AtomDetail = React.createClass({
     this.fetchAtom();
   },
   fetchAtom: function() {
+    var url = '/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
+
     $.ajax({
-      url: this.props.url,
+      url: url,
       dataType: 'json',
       success: function(data) {
         this.setState(data);
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
+        console.error(url, status, err.toString());
       }.bind(this)
     });
   },
