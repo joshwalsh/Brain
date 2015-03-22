@@ -17,6 +17,9 @@ var AtomDetail = React.createClass({
   componentDidMount: function() {
     this.fetchAtom();
   },
+  componentWillReceiveProps: function() {
+    this.fetchAtom();
+  },
   fetchAtom: function() {
     var url = '/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
 
@@ -77,8 +80,7 @@ var AtomDetail = React.createClass({
             <p>Influences <strong>{ this.state.influence }%</strong> of brain.</p>
 
             <ul className="mast__actions">
-              <li><a href={'/atoms/' + this.state.slug + '/edit'} className='icon icon--light icon__edit'></a></li>
-              <li><a href={'/atoms/' + this.state.slug } className='icon icon--light icon__trash'></a></li>
+              <li><Link to="atom" params={{atomSlug: this.state.slug}} className="icon icon--light icon__edit"></Link></li>
             </ul>
           </div>
         </div>
