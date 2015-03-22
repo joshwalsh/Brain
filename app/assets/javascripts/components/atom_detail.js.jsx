@@ -34,34 +34,6 @@ var AtomDetail = React.createClass({
       }.bind(this)
     });
   },
-  saveConnection: function(atom, connection) {
-    connection.atom = atom;
-
-    $.ajax({
-      url: '/connections.json',
-      dataType: 'json',
-      type: 'POST',
-      data: {connection: connection},
-      success: function(data) {
-        this.fetchAtom();
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error('/atoms.json', status, err.toString());
-      }.bind(this)
-    });
-  },
-  handleNewParent: function(data) {
-    var atom = { title: data.title };
-    var connection = { child_atom_id: this.state.id };
-
-    this.saveConnection(atom, connection);
-  },
-  handleNewChild: function(data) {
-    var atom = { title: data.title };
-    var connection = { parent_atom_id: this.state.id };
-
-    this.saveConnection(atom, connection);
-  },
   render: function() {
     var siblings = this.state.siblings.map(function (atom) {
       return (
@@ -88,8 +60,7 @@ var AtomDetail = React.createClass({
           <div className="col-4">
             <div className="l-section">
               <h2 className="list-header">Parents:</h2>
-              <ConnectionList connections={this.state.parents} onConnectionsUpdate={this.fetchAtom} type="parents" />
-              <ConnectionForm onAddConnection={this.handleNewParent} />
+              <ConnectionList atom={this.state} connections={this.state.parents} onConnectionsUpdate={this.fetchAtom} type="parents" />
             </div>
           </div>
           <div className="col-4">
@@ -103,8 +74,7 @@ var AtomDetail = React.createClass({
           <div className="col-4">
             <div className="l-section">
               <h2 className="list-header">Children:</h2>
-              <ConnectionList connections={this.state.children} onConnectionsUpdate={this.fetchAtom} type="children" />
-              <ConnectionForm onAddConnection={this.handleNewChild} />
+              <ConnectionList atom={this.state} connections={this.state.children} onConnectionsUpdate={this.fetchAtom} type="children" />
             </div>
           </div>
         </div>

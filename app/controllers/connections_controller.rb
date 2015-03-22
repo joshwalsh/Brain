@@ -19,11 +19,11 @@ class ConnectionsController < ApplicationController
 
     if parent
       parent.children << atom
-      redirect_to parent
     elsif child
       child.parents << atom
-      redirect_to child
     end
+
+    render json: {}, status: :no_content
   end
 
   def update

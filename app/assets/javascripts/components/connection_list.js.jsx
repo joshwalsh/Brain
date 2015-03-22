@@ -1,4 +1,26 @@
 var ConnectionList = React.createClass({
+  handleAddConnection: function(data) {
+    var atom = { title: data.title };
+
+    if (this.props.type == "parents") {
+      var connection = { child_atom_id: this.props.atom.id, atom: atom };
+    } else {
+      var connection = { parent_atom_id: this.props.atom.id, atom: atom };
+    }
+
+    $.ajax({
+      url: '/connections.json',
+      dataType: 'json',
+      type: 'POST',
+      data: {connection: connection},
+      success: function(data) {
+        this.props.onConnectionsUpdate();
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error('/connections.json', status, err.toString());
+      }.bind(this)
+    });
+  },
   handleRemoveConnection: function(data) {
     var url = '/connections/' + data.connectionId + '.json';
     $.ajax({
@@ -24,9 +46,12 @@ var ConnectionList = React.createClass({
     });
 
     return (
-      <ul className="connections-list">
-        {connections}
-      </ul>
+      <div>
+        <ul className="connections-list">
+          {connections}
+        </ul>
+        <ConnectionForm onAddConnection={this.handleAddConnection} />
+      </div>
     )
   }
 });
