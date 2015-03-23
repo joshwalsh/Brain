@@ -42,7 +42,8 @@ class AtomsController < ApplicationController
   def destroy
     atom = Atom.for_slug(params[:id])
     atom.destroy
-    redirect_to setup_path
+    
+    render json: {}, status: :no_content
   end
 
   protected

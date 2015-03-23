@@ -34,6 +34,23 @@ var AtomDetail = React.createClass({
       }.bind(this)
     });
   },
+  deleteAtom: function() {
+    if (confirm("Are you sure?")) {
+      var url = '/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
+
+      $.ajax({
+        url: url,
+        dataType: 'json',
+        type: 'DELETE',
+        success: function(data) {
+          this.context.router.transitionTo('/');
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(url, status, err.toString());
+        }.bind(this)
+      });
+    }
+  },
   render: function() {
     var siblings = this.state.siblings.map(function (atom) {
       return (
@@ -49,7 +66,7 @@ var AtomDetail = React.createClass({
             <p>Influences <strong>{ this.state.influence }%</strong> of brain.</p>
 
             <ul className="mast__actions">
-
+              <li><a className="icon icon--light icon__trash" onClick={this.deleteAtom}></a></li>
             </ul>
           </div>
         </div>
