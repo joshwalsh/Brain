@@ -36,13 +36,14 @@ class AtomsController < ApplicationController
     @atom = Atom.for_slug(params[:id])
     @atom.update_attributes(atom_params)
 
-    redirect_to @atom
+    @atom = @atom.decorate
+    render :show
   end
 
   def destroy
     atom = Atom.for_slug(params[:id])
     atom.destroy
-    
+
     render json: {}, status: :no_content
   end
 
@@ -59,7 +60,6 @@ class AtomsController < ApplicationController
   def atom_params
     params.require(:atom).permit(
       :title,
-      :slug,
       :description
     )
   end

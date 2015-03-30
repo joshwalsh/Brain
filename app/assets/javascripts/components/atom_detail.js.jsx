@@ -34,6 +34,19 @@ var AtomDetail = React.createClass({
       }.bind(this)
     });
   },
+  updateAtom: function() {
+    var url = '/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
+    var controller = this;
+
+    $.ajax({
+      url: url,
+      type: 'PUT',
+      data: {atom: this.state},
+      success: function(data) {
+        controller.context.router.transitionTo('atom', {atomSlug: data.slug});
+      }
+    });
+  },
   deleteAtom: function() {
     if (confirm("Are you sure?")) {
       var url = '/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
@@ -51,6 +64,9 @@ var AtomDetail = React.createClass({
       });
     }
   },
+  handleTitleChange: function(e) {
+    this.setState({title: e.target.value});
+  },
   render: function() {
     var siblings = this.state.siblings.map(function (atom) {
       return (
@@ -61,7 +77,7 @@ var AtomDetail = React.createClass({
     return (
       <div>
         <div className="mast">
-          <h1 className="mast__title">{ this.state.title }</h1>
+          <h1 className="mast__title"><input type="text" className="editableTitle" value={ this.state.title } onChange={ this.handleTitleChange } onBlur={ this.updateAtom } /></h1>
           <div className="mast__divider">
             <p>Influences <strong>{ this.state.influence }%</strong> of brain.</p>
 

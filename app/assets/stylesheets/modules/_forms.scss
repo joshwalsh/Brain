@@ -15,3 +15,11 @@ input.input-minimal {
   padding: 0 0 4px 0;
   border-radius: 0;
 }
+
+input.editableTitle {
+  font-weight: 400;
+  font-family: $headline-font;
+  text-align: center;
+  border: 0;
+  margin-bottom: 0;
+}
