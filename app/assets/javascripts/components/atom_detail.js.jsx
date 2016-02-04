@@ -67,6 +67,9 @@ var AtomDetail = React.createClass({
   handleTitleChange: function(e) {
     this.setState({title: e.target.value});
   },
+  handleDescriptionChange: function(e) {
+    this.setState({description: e.target.value});
+  },
   render: function() {
     var siblings = this.state.siblings.map(function (atom) {
       return (
@@ -86,8 +89,6 @@ var AtomDetail = React.createClass({
             </ul>
           </div>
         </div>
-
-        <MarkdownDescription html={this.state.description} />
 
         <div className="row">
           <div className="col-4">
@@ -111,6 +112,9 @@ var AtomDetail = React.createClass({
             </div>
           </div>
         </div>
+
+        <MarkdownDescription html={this.state.description} />
+        <textarea value={ this.state.description } onChange={ this.handleDescriptionChange } onBlur={ this.updateAtom } />
       </div>
     );
   }
