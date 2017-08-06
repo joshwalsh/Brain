@@ -1,5 +1,5 @@
 class AtomsController < ApplicationController
-  before_filter :check_if_exists, only: [:create]
+  before_action :check_if_exists, only: [:create]
 
   def index
     @atoms = Atom.all.order(:slug).decorate

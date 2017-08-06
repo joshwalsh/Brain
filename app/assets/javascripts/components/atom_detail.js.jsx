@@ -38,6 +38,8 @@ var AtomDetail = React.createClass({
     var url = '/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
     var controller = this;
 
+    delete this.state.isEditing; // Only to remove from state before sending to API
+
     $.ajax({
       url: url,
       type: 'PUT',
@@ -46,6 +48,8 @@ var AtomDetail = React.createClass({
         controller.context.router.transitionTo('atom', {atomSlug: data.slug});
       }
     });
+
+    this.setState({isEditing: false});
   },
   deleteAtom: function() {
     if (confirm("Are you sure?")) {
@@ -70,6 +74,9 @@ var AtomDetail = React.createClass({
   handleDescriptionChange: function(e) {
     this.setState({description: e.target.value});
   },
+  toggleEditor: function(e) {
+    this.setState({isEditing: !this.state.isEditing});
+  },
   render: function() {
     var siblings = this.state.siblings.map(function (atom) {
       return (
@@ -85,6 +92,7 @@ var AtomDetail = React.createClass({
             <p>Influences <strong>{ this.state.influence }%</strong> of brain.</p>
 
             <ul className="mast__actions">
+              <li><a className="icon icon--light icon__edit" onClick={this.toggleEditor}></a></li>
               <li><a className="icon icon--light icon__trash" onClick={this.deleteAtom}></a></li>
             </ul>
           </div>
@@ -114,7 +122,8 @@ var AtomDetail = React.createClass({
         </div>
 
         <MarkdownDescription html={this.state.description} />
-        <textarea value={ this.state.description } onChange={ this.handleDescriptionChange } onBlur={ this.updateAtom } />
+
+        {this.state.isEditing ? <textarea value={ this.state.description } onChange={ this.handleDescriptionChange } onBlur={ this.updateAtom } /> : null }
       </div>
     );
   }
