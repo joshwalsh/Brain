@@ -13,7 +13,6 @@ gem 'jbuilder'
 gem 'devise'
 gem 'paper_trail'
 gem 'draper'
-gem 'react-rails'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
 source 'https://rails-assets.org' do

@@ -1,4 +1,4 @@
-class Api::V1::AtomsController < Api::V1::BaseController
+class AtomsController < ApplicationController
   before_action :check_if_exists, only: [:create]
 
   def index

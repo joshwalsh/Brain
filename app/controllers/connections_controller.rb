@@ -1,4 +1,4 @@
-class Api::V1::ConnectionsController < Api::V1::BaseController
+class ConnectionsController < ApplicationController
   def show
     @connection = Connection.find(params[:id]).decorate
   end
