@@ -22,7 +22,7 @@ var ConnectionDetail = React.createClass({
     this.fetchComponent();
   },
   fetchComponent: function() {
-    var url = '/connections/' + this.context.router.getCurrentParams().connectionId + '.json'
+    var url = 'api/v1/connections/' + this.context.router.getCurrentParams().connectionId + '.json'
 
     $.ajax({
       url: url,

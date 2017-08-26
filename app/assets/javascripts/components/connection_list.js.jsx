@@ -9,7 +9,7 @@ var ConnectionList = React.createClass({
     }
 
     $.ajax({
-      url: '/connections.json',
+      url: 'api/v1/connections.json',
       dataType: 'json',
       type: 'POST',
       data: {connection: connection},
@@ -17,12 +17,12 @@ var ConnectionList = React.createClass({
         this.props.onConnectionsUpdate();
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error('/connections.json', status, err.toString());
+        console.error('api/v1/connections.json', status, err.toString());
       }.bind(this)
     });
   },
   handleRemoveConnection: function(data) {
-    var url = '/connections/' + data.connectionId + '.json';
+    var url = 'api/v1/connections/' + data.connectionId + '.json';
     $.ajax({
       url: url,
       dataType: 'json',
@@ -47,7 +47,7 @@ var ConnectionList = React.createClass({
 
     return (
       <div>
-        <ul className="connections-list">
+        <ul className="list-group">
           {connections}
         </ul>
         <ConnectionForm onAddConnection={this.handleAddConnection} />

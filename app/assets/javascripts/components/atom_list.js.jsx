@@ -9,13 +9,13 @@ var AtomList = React.createClass({
   },
   fetchAtoms: function() {
     $.ajax({
-      url: '/atoms.json',
+      url: 'api/v1/atoms.json',
       dataType: 'json',
       success: function(data) {
         this.setState({atoms: data});
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error('/atoms.json', status, err.toString());
+        console.error('api/v1/atoms.json', status, err.toString());
       }.bind(this)
     });
   },
@@ -27,7 +27,7 @@ var AtomList = React.createClass({
     });
     return (
       <div>
-        <ol className="link-list">
+        <ol className="list-group">
           {atoms}
         </ol>
       </div>

@@ -21,7 +21,7 @@ var AtomDetail = React.createClass({
     this.fetchAtom();
   },
   fetchAtom: function() {
-    var url = '/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
+    var url = 'api/v1/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
 
     $.ajax({
       url: url,
@@ -35,7 +35,7 @@ var AtomDetail = React.createClass({
     });
   },
   updateAtom: function() {
-    var url = '/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
+    var url = 'api/v1/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
     var controller = this;
 
     delete this.state.isEditing; // Only to remove from state before sending to API
@@ -53,7 +53,7 @@ var AtomDetail = React.createClass({
   },
   deleteAtom: function() {
     if (confirm("Are you sure?")) {
-      var url = '/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
+      var url = 'api/v1/atoms/' + this.context.router.getCurrentParams().atomSlug + '.json'
 
       $.ajax({
         url: url,
@@ -86,37 +86,37 @@ var AtomDetail = React.createClass({
 
     return (
       <div>
-        <div className="mast">
-          <h1 className="mast__title"><input type="text" className="editableTitle" value={ this.state.title } onChange={ this.handleTitleChange } onBlur={ this.updateAtom } /></h1>
-          <div className="mast__divider">
-            <p>Influences <strong>{ this.state.influence }%</strong> of brain.</p>
+        <div className="jumbotron">
+          <h1 className="display-3"><input type="text" className="editableTitle" value={ this.state.title } onChange={ this.handleTitleChange } onBlur={ this.updateAtom } /></h1>
+          <p class="lead">Influences <strong>{ this.state.influence }%</strong> of brain.</p>
 
-            <ul className="mast__actions">
-              <li><a className="icon icon--light icon__edit" onClick={this.toggleEditor}></a></li>
-              <li><a className="icon icon--light icon__trash" onClick={this.deleteAtom}></a></li>
-            </ul>
+          <div>
+            <button className="btn btn-info mr-sm-2" onClick={this.toggleEditor}>Edit</button>
+            <button className="btn btn-danger" onClick={this.deleteAtom}>Delete</button>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-4">
-            <div className="l-section">
-              <h2 className="list-header">Parents:</h2>
-              <ConnectionList atom={this.state} connections={this.state.parents} onConnectionsUpdate={this.fetchAtom} type="parents" />
+        <div class="container">
+          <div className="row">
+            <div className="col">
+
+                <h2>Parents:</h2>
+                <ConnectionList atom={this.state} connections={this.state.parents} onConnectionsUpdate={this.fetchAtom} type="parents" />
+
             </div>
-          </div>
-          <div className="col-4">
-            <div className="l-section">
-              <h2 className="list-header">Siblings:</h2>
-              <ul className="connections-list">
-                {siblings}
-              </ul>
+            <div className="col">
+
+                <h2>Siblings:</h2>
+                <ul className="list-group">
+                  {siblings}
+                </ul>
+
             </div>
-          </div>
-          <div className="col-4">
-            <div className="l-section">
-              <h2 className="list-header">Children:</h2>
-              <ConnectionList atom={this.state} connections={this.state.children} onConnectionsUpdate={this.fetchAtom} type="children" />
+            <div className="col">
+
+                <h2>Children:</h2>
+                <ConnectionList atom={this.state} connections={this.state.children} onConnectionsUpdate={this.fetchAtom} type="children" />
+
             </div>
           </div>
         </div>
