@@ -61,7 +61,7 @@ class Atom < ActiveRecord::Base
   end
 
   def self.deslugify(slug)
-    slug.humanize
+    slug.gsub("-","_").humanize
   end
 
   def deslugify(slug)
