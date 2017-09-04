@@ -3,39 +3,16 @@
   <p class="lead">Influences <strong><%= @atom.influence %>%</strong> of brain.</p>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>Parents:</h2>
-      <ol class="list-group">
-        <% @atom.parents.each do |atom| %>
-          <li class="list-group-item">
-            <%= link_to atom.title, atom %>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-    <div class="col">
-      <h2>Siblings:</h2>
-      <ol class="list-group">
-        <% @atom.siblings.each do |atom| %>
-          <li class="list-group-item">
-            <%= link_to atom.title, atom %>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-    <div class="col">
-      <h2>Children:</h2>
-      <ol class="list-group">
-        <% @atom.children.each do |atom| %>
-          <li class="list-group-item">
-            <%= link_to atom.title, atom %>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-  </div>
-
+<% if @atom.description %>
+<div class="container-fluid mb-5">
   <%= @atom.description %>
+</div>
+<% end %>
+
+<div class="container-fluid">
+  <div class="card-deck">
+    <%= render :partial => "card", :collection => @atom.parents, :as => :atom, locals: { type: "Parent" } %>
+    <%= render :partial => "card", :collection => @atom.siblings, :as => :atom, locals: { type: "Sibling" } %>
+    <%= render :partial => "card", :collection => @atom.children, :as => :atom, locals: { type: "Child" } %>
+  </div>
 </div>

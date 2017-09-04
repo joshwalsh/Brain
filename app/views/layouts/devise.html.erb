@@ -3,12 +3,27 @@
   <%= render 'layouts/dochead' %>
 
   <body>
-    <% flash.each do |name, msg| %>
-      <% if msg.present? %>
-        <%= content_tag :div, msg, id: "flash_#{name}", class: "notification notification--#{name}" %>
-      <% end %>
-    <% end %>
 
-    <%= yield %>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_path %>">Brain</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <% flash.each do |name, msg| %>
+        <% if msg.present? %>
+          <%= content_tag :div, msg, id: "flash_#{name}", class: "alert alert-primary" %>
+        <% end %>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

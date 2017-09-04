@@ -1,7 +1,5 @@
-<ol class="list-group">
+<div class="list-group">
   <% @atoms.each do |atom| %>
-    <li class="list-group-item">
-      <%= link_to atom.title, atom %>
-    </li>
+    <%= link_to atom.title, atom, class: "list-group-item" %>
   <% end %>
-</ol>
+</div>
